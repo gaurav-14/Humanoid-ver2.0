@@ -1,0 +1,67 @@
+/*flyingPush*/
+.placeholderFV {
+	width: 100%;
+	background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="314.068" height="314.068" viewBox="0 0 314.068 314.068"><path fill="rgba(0,0,0,.3)"	 d="M293.002 78.53C249.646 3.435 153.618-22.296 78.53 21.068 3.433 64.418-22.3 160.442 21.065 235.534c43.35 75.095 139.375 100.83 214.465 57.47C310.628 249.64 336.37 153.62 293.003 78.53zM219.834 265.8C159.767 300.494 82.94 279.908 48.258 219.83 13.568 159.76 34.16 82.935 94.23 48.26c60.07-34.69 136.894-14.106 171.578 45.97 34.685 60.077 14.098 136.887-45.974 171.57zm-6.28-115.148l-82.213-47.95c-7.49-4.373-13.534-.876-13.492 7.79l.42 95.174c.04 8.664 6.156 12.19 13.67 7.85l81.585-47.102c7.506-4.332 7.522-11.388.032-15.762z"/></svg>');
+	background-color: #f2efea;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 120px 120px!important;
+}
+
+.flyingPush {
+	border: 0 solid rgb(123, 106, 163,.7);
+	transition: border 300ms ease-in-out;
+}
+
+.flyingPush.flying .containervideo {
+	padding: 0!important;
+}
+
+.flyingPush.flying {
+	position: fixed;
+	z-index: 10000;
+	border: 10px solid rgba(123,123,123,.7);
+	transform: translate3d(0,0,0);
+	transform-origin: 0 0;
+	transition: top 300ms ease-in-out, left 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.flyingPush.flying.small {
+	transform: scale(.5);
+	transition: top 300ms ease-in-out, left 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.flyingPush.flying.small:hover {
+	transform: scale(.5);
+}
+
+.flyingPush.flying.small.over {
+  transform: scale(1) translate3d(-50%,-50%,0);;
+}
+
+
+.flyingPush .goHome {
+	height: 30px;
+	width: 30px;
+	display: none;
+	background: rgba(0,0,0,1);
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+	position: absolute;
+	right: -10px;
+	top: -40px;
+}
+
+.flyingPush .goHome svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.flyingPush.small .goHome {
+	display: block;
+	opacity: 1;
+	cursor: pointer;
+}
+
+/*end flyingPush*/

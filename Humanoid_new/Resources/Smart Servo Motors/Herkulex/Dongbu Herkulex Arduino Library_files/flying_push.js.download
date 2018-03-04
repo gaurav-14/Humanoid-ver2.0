@@ -1,0 +1,174 @@
+/*flyingPush*/
+var flyingPush;
+
+function flyingPush() {
+    var me = this;
+
+    me.init = function(targetFV, devices) {
+        console.debug("[FV] flyingPush");
+        if (typeof device === 'undefined') {
+            var sw = document.documentElement.clientWidth,
+                isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
+            me.device = sw > 900 && !isTouch ? "desktop" : 900 > sw && sw > 670 || sw > 900 && isTouch ? "tablet" : "smartphone";
+        } else {
+            me.device = device;
+        }
+
+        if (typeof devices !== 'undefined') {
+            if (!devices.hasOwnProperty(me.device)) return false;
+        }
+
+        me.body = jQuery('body');
+        me.targetFV = jQuery(targetFV);
+
+        if (me.targetFV.length === 0) return false;
+
+        //me.targetFV.wrap('<div class="placeholderFV"><div class="flyingPush"></div></div>');
+        me.flyingPush = jQuery(targetFV);
+        me.placeholderFV = jQuery('.placeholderFV');
+
+        setTimeout(function() {
+            me.goHome = jQuery(document.createElement('a')).addClass('goHome targetGoHome').html('<svg class="targetGoHome" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><polygon fill="#fff" id="x-mark-icon" points="438.393 374.595 319.757 255.977 438.378 137.348 374.595 73.607 255.995 192.225 137.375 73.622 73.607 137.352 192.246 255.983 73.622 374.625 137.352 438.393 256.002 319.734 374.652 438.378 "/></svg>');
+            me.flyingPush.append(me.goHome);
+
+            me.goHome.click(function(e) {
+                e.preventDefault();
+                me.flyingPush.removeClass('flying small').addClass('toHome').attr('style', '');
+                me.placeholderFV.attr('style', '');
+            });
+
+            me.flyingPush.mouseenter(function(e) {
+                if (!e.target.classList.contains('targetGoHome') && me.flyingPush.hasClass('small')) {
+                    me.flyingPush.addClass('over');
+                }
+            });
+
+            me.flyingPush.mouseleave(function(e) {
+                me.flyingPush.removeClass('over');
+            });
+
+        }, 3000);
+
+
+
+        me.setPlaceholderHeight();
+        me.checkWindowResize();
+
+        me.checkScroll();
+        setTimeout(function() {
+            me.checkScroll();
+            me.setPlaceholderHeight();
+        }, 1000);
+        setTimeout(function() {
+            me.checkScroll();
+            me.setPlaceholderHeight();
+        }, 2000);
+        setTimeout(function() {
+            me.checkScroll();
+            me.setPlaceholderHeight();
+        }, 3000);
+        setTimeout(function() {
+            me.checkScroll();
+        }, 4000);
+
+        jQuery(window).scroll(function() {
+            me.checkScroll();
+        });
+    };
+
+    me.checkScroll = function() {
+
+        if (me.flyingPush.hasClass('toHome')) return false;
+        if (me.bloccoAnim == 1) return false;
+        me.bloccoAnim = 1;
+
+        me.placeholderFVO = me.placeholderFV.offset();
+
+        me.diffTop = 60;
+        if (me.body.hasClass('pushing')) me.diffTop = me.diffTop + jQuery('#flying-container').height();
+
+        if (me.placeholderFV.offset().top - me.diffTop <= jQuery(window).scrollTop()) {
+            me.setPlaceholderHeight();
+            if (!me.flyingPush.hasClass('flying')) me.flyingPush.addClass('flying');
+
+            if ((me.placeholderFV.offset().top + me.flyingPush.height() / 6) >= jQuery(window).scrollTop()) {
+                me.left = (me.placeholderFVO.left + ((me.placeholderFV.width() - me.flyingPush.outerWidth()) / 2));
+                me.flyingPush.removeClass('small').css({
+                    top: me.diffTop + 'px',
+                    left: me.left + 'px'
+                });
+            } else {
+                if (!me.flyingPush.hasClass('small')) {
+                    me.left = (me.placeholderFVO.left + ((me.placeholderFV.width() - me.flyingPush.outerWidth()) / 2));
+                    me.flyingPush.css({
+                        top: me.diffTop + 'px',
+                        left: me.left + 'px'
+                    });
+                }
+                me.flyingPush.addClass('small').css({
+                    top: 'calc(100vh - ' + (me.flyingPush.height() * 0.5) + 'px - 50px)',
+                    left: 'calc(100vw - ' + (me.flyingPush.width() * 0.5) + 'px - 50px)'
+                });
+            }
+
+        } else {
+            me.flyingPush.removeClass('flying').css({
+                top: '',
+                left: ''
+            });
+            me.placeholderFV.height('');
+        }
+        me.bloccoAnim = 0;
+    };
+
+    me.checkWindowResize = function() {
+        jQuery(window).resize(function() {
+            console.debug("[FV] resize");
+            me.placeholderFV.height('');
+            me.checkScroll();
+            me.setPlaceholderHeight();
+        });
+    };
+
+    me.setPlaceholderHeight = function() {
+        if (!me.flyingPush.hasClass('flying')) {
+            me.placeholderFV.height(me.flyingPush.outerHeight());
+        }
+
+    };
+
+}
+
+/*end flyingPush*/
+
+document.addEventListener("pushInit", function() {
+    var devices = {
+        desktop: 1,
+        tablet: false,
+        mobile: false
+    };
+    flyingPush = new flyingPush();
+    flyingPush.init('.targetFV', devices);
+}, false);
+
+function av_setCookie(cname, cvalue, extime) {
+    var expires = "expires="+ extime.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function av_getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+

@@ -1,0 +1,1 @@
+1. http://support.robotis.com/en/product/actuator/dynamixel/dxl_communication.htm

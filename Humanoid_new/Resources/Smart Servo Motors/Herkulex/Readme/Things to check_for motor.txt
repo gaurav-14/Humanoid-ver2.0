@@ -1,0 +1,8 @@
+Things to check:
+
+1.Servo id should be same as that of motor.Use default 253 id no.,if you don't know the id.
+2.While using Herkulex manager,change the serial terminal to rx0 & tx0.
+3.check the JST connector,if it is working properly or not, to which you are connecting your motor.
+4.shorter the connections better the accuracy.
+5.Power on the supply before sending data to motor
+6.

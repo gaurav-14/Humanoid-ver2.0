@@ -1,0 +1,491 @@
+<robot
+  name="Biped">
+  <link
+    name="Torso">
+    <inertial>
+      <origin
+        xyz="-0.0070434 0.067755 0.28778"
+        rpy="0 0 0" />
+      <mass
+        value="0.17172" />
+      <inertia
+        ixx="0.0002255"
+        ixy="-1.0558E-19"
+        ixz="-1.4364E-05"
+        iyy="9.1883E-05"
+        iyz="-9.5237E-12"
+        izz="0.00019984" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/Torso.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/Torso.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="RightThigh">
+    <inertial>
+      <origin
+        xyz="0.04394 -8.3484E-17 0.0015297"
+        rpy="0 0 0" />
+      <mass
+        value="0.039762" />
+      <inertia
+        ixx="2.4478E-05"
+        ixy="-2.4657E-20"
+        ixz="1.0611E-07"
+        iyy="4.6388E-05"
+        iyz="-5.5683E-21"
+        izz="2.6074E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightThigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightThigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RHP"
+    type="revolute">
+    <origin
+      xyz="-0.00101 0.033315 0.27521"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="Torso" />
+    <child
+      link="RightThigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="RightLeg">
+    <inertial>
+      <origin
+        xyz="0.025364 0.0026231 -0.0015582"
+        rpy="0 0 0" />
+      <mass
+        value="0.087066" />
+      <inertia
+        ixx="2.7513E-05"
+        ixy="6.4108E-07"
+        ixz="-3.7856E-06"
+        iyy="8.9424E-05"
+        iyz="3.8238E-07"
+        izz="7.2544E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightLeg.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightLeg.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RKP"
+    type="revolute">
+    <origin
+      xyz="0.082 0 0"
+      rpy="-8.8837E-17 5.5511E-17 -3.3839E-19" />
+    <parent
+      link="RightThigh" />
+    <child
+      link="RightLeg" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="RightAnkle">
+    <inertial>
+      <origin
+        xyz="0.00837180077220172 -0.00699559081398933 -0.00239534776194035"
+        rpy="0 0 0" />
+      <mass
+        value="0.07577179240796" />
+      <inertia
+        ixx="3.1046900740406E-05"
+        ixy="-4.50688797784087E-06"
+        ixz="-6.81478369531946E-07"
+        iyy="2.57601436628987E-05"
+        iyz="-7.48188262756949E-07"
+        izz="3.74119721112539E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightAnkle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightAnkle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RAP"
+    type="revolute">
+    <origin
+      xyz="0.09249 0.00125 0"
+      rpy="1.8895E-16 0 0" />
+    <parent
+      link="RightLeg" />
+    <child
+      link="RightAnkle" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="RightFoot">
+    <inertial>
+      <origin
+        xyz="0.00742892457879679 -0.00972567132312177 0.0021017932410036"
+        rpy="0 0 0" />
+      <mass
+        value="0.092632805492263" />
+      <inertia
+        ixx="7.53633907365661E-05"
+        ixy="4.78448696371906E-08"
+        ixz="-3.25041411929878E-06"
+        iyy="6.07545524060239E-05"
+        iyz="-2.47191501531842E-07"
+        izz="2.96175745667512E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightFoot.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/RightFoot.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RAR"
+    type="revolute">
+    <origin
+      xyz="0.04725 0 0"
+      rpy="-1.5708 -8.8994E-16 1.6653E-16" />
+    <parent
+      link="RightAnkle" />
+    <child
+      link="RightFoot" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="LeftThigh">
+    <inertial>
+      <origin
+        xyz="0.043796 -0.0035541 -0.0015297"
+        rpy="0 0 0" />
+      <mass
+        value="0.039762" />
+      <inertia
+        ixx="2.4621E-05"
+        ixy="1.7664E-06"
+        ixz="-1.0577E-07"
+        iyy="4.6245E-05"
+        iyz="8.583E-09"
+        izz="2.6074E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftThigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftThigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LHP"
+    type="revolute">
+    <origin
+      xyz="-0.00101 0.1022 0.27521"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="Torso" />
+    <child
+      link="LeftThigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="LeftLeg">
+    <inertial>
+      <origin
+        xyz="0.0247007773804843 0.00633162041457203 0.00155822758779832"
+        rpy="0 0 0" />
+      <mass
+        value="0.0870659695425138" />
+      <inertia
+        ixx="2.86699030193354E-05"
+        ixy="-8.40918202698599E-06"
+        ixz="3.8006354330755E-06"
+        iyy="8.82671787235872E-05"
+        iyz="1.7956063076664E-07"
+        izz="7.25444538478562E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftLeg.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftLeg.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LKP"
+    type="revolute">
+    <origin
+      xyz="0.081731 -0.0066326 0"
+      rpy="-9.3218E-17 5.2634E-17 -0.080974" />
+    <parent
+      link="LeftThigh" />
+    <child
+      link="LeftLeg" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="LeftAnkle">
+    <inertial>
+      <origin
+        xyz="0.00788539731983381 -0.00753949340237611 0.00239534776194038"
+        rpy="0 0 0" />
+      <mass
+        value="0.07577179240796" />
+      <inertia
+        ixx="3.04221153828982E-05"
+        ixy="-4.81971241282012E-06"
+        ixz="7.29971625946848E-07"
+        iyy="2.6385092171767E-05"
+        iyz="7.00979083841733E-07"
+        izz="3.74121352626145E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftAnkle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftAnkle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LAP"
+    type="revolute">
+    <origin
+      xyz="0.091296 0.014864 -1E-05"
+      rpy="5.4905E-17 -8.1789E-18 0.14788" />
+    <parent
+      link="LeftLeg" />
+    <child
+      link="LeftAnkle" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="LeftFoot">
+    <inertial>
+      <origin
+        xyz="0.0074289 0.0099038 0.0021018"
+        rpy="0 0 0" />
+      <mass
+        value="0.092633" />
+      <inertia
+        ixx="7.5369E-05"
+        ixy="-1.934E-07"
+        ixz="-3.2504E-06"
+        iyy="6.0755E-05"
+        iyz="1.2123E-07"
+        izz="2.9623E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftFoot.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Biped/meshes/LeftFoot.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LAR"
+    type="revolute">
+    <origin
+      xyz="0.047144 -0.0031588 1E-05"
+      rpy="-1.5708 0 -0.066903" />
+    <parent
+      link="LeftAnkle" />
+    <child
+      link="LeftFoot" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>
