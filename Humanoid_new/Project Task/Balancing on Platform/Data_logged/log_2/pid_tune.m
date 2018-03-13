@@ -2,7 +2,8 @@ P_0 = 0.1 ;
 P_1 = 0.1;
 I = 0;
 D = 0;
-file_path = 'C:\Users\HP\Desktop\Humanoid\SWAYAT-ver2.0\Humanoid_new\Project Task\Balancing on Platform\Data_logged\log_2\log_2';
+
+file_path = 'C:\Users\HP\Desktop\Humanoid\SWAYAT-ver2.0\Humanoid_new\Project Task\Balancing on Platform\Data_logged\log_4\log_4';
 
 
 fid=fopen(file_path);
